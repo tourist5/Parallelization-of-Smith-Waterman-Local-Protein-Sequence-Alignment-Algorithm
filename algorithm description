@@ -1,0 +1,32 @@
+The Smith–Waterman algorithm performs local sequence alignment; that is,
+for determining similar regions between two strings of nucleic acid sequences
+or protein sequences. Instead of looking at the entire sequence, the Smith–
+Waterman algorithm compares segments of all possiblelengths.
+Smith–Waterman algorithm aligns two sequences by matches/mismatches
+(also known as substitutions), insertions, and deletions. Both insertions and
+deletions are the operations that introduce gaps, which are represented by
+dashes. The Smith–Waterman algorithm has severalsteps:
+1) Initialize the scoring matrix. The dimensions of the scoring matrix are
+1+length of each sequence respectively. All the elements of the first row and
+the first column are set to 0. The extra first row and first column make it
+possible to align one sequence to another at any position, and setting them to
+0 makes the terminal gap free frompenalty.
+2) Scoring. Score each element from left to right, top to bottom in the matri.
+The value of each cell is determined from the cell which has the maximum
+value among the cell just above it, or to its leftt or diagonal to it. If the cell
+which has the maximum value is diagonal to the computing cell we add the
+value of the diagonal cell and the match value or mismatch value in case of
+match and mismatch respectively. If the cell which has the maximum value is
+the cell above it or to its left, we add the gap value to the maximum value. If
+none of the scores are positive, this element gets a 0. Otherwise the highest
+score is used and the source of that score isrecorded.
+3) Traceback. Starting at the element with the highest score, traceback based
+on the source of each score recursively, until 0 is encountered. The segments
+that have the highest similarity score based on the given scoring system is
+generated in this process. While performing traceback we write the elements 
+12
+we insert a gap denoted by a dash. If the value of that cell came from the cell
+above it we introduce a gap at that position in the sequence which is written
+horizontally else if the value of that cell came from the cell to its left we
+introduce a gap at that position in the sequence which is written vertically. We
+stop when a 0 is encountered.
